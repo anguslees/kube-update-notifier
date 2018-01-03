@@ -98,7 +98,6 @@ type registryCache map[string]*registry.Registry
 
 func (r *registryCache) Get(reg string) (*registry.Registry, error) {
 	if hub := (*r)[reg]; hub != nil {
-		log.Printf("hit for %q: %v", reg, hub)
 		return hub, nil
 	}
 
@@ -113,7 +112,6 @@ func (r *registryCache) Get(reg string) (*registry.Registry, error) {
 	}
 
 	(*r)[reg] = hub
-	log.Printf("miss for %q: %v", reg, hub)
 	return hub, nil
 }
 
@@ -196,7 +194,7 @@ func main2() error {
 			}
 
 			if tagv.GT(ver) {
-				log.Printf("** Newer tag found: %s", tagv)
+				log.Printf("** Newer tag found: %s (%s)", t, tagv)
 			}
 		}
 
